@@ -4,12 +4,17 @@ using namespace std;
 
 #include "Number.hh"
 
-int main() {
+int main(int argc, char *argv[]) {
 
-    for(int i = 1; i < 100; i++) {
-        Number num(i);
+    Number num(1);
 
-        num.performCollatzConjecture();
-        cout << "Stopping Time for " << num.getNumber() << " is : " << num.getStoppingTime() << endl;
+    if (argc != 3) {
+        cout << "./CollatzConjecture <starting> <ending>";
+        return 0;
+    }
+
+    for(int i = atoi(argv[1]); i <= atoi(argv[2]); i++) {
+        num.performCollatzConjecture(i);
+        cout << "Stopping Time for " << i << " is : " << num.getStoppingTime(i) << endl;
     }
 }
